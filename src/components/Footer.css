@@ -1,0 +1,167 @@
+/* Footer Styles */
+.footer-container {
+    background-color: #1e2430;
+    color: #b0b5c1;
+    font-size: 14px;
+    padding: 50px 0 20px;
+    text-align: left;
+    width: 100vw;
+    box-sizing: border-box;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 0 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 30px;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 250px;
+    margin-bottom: 20px;
+}
+
+.footer-section h4 {
+    color: #fff;
+    font-size: 16px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+/* Style for the underline effect on headings */
+.footer-section h4::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 2px;
+    background-color: #3f51b5; /* Primary accent color */
+    margin-top: 8px;
+}
+
+.footer-about p {
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Talk to Support Button */
+.talk-to-support {
+    background-color: #2e3541;
+    border-radius: 5px;
+    padding: 15px 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.support-title {
+    color: #b0b5c1;
+    margin-bottom: 5px;
+}
+
+.phone-number {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.number {
+    color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.chat-icon {
+    font-size: 20px;
+    background-color: #3f51b5;
+    color: #fff;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Newsletter Section */
+.newsletter-form {
+    display: flex;
+    margin-top: 15px;
+}
+
+.newsletter-form input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #2e3541;
+    color: #fff;
+    border-radius: 4px;
+}
+
+.newsletter-form input::placeholder {
+    color: #8c929e;
+}
+
+.subscribe-btn {
+    background-color: #3f51b5;
+    border: none;
+    color: #fff;
+    padding: 0 15px;
+    margin-left: -5px;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 1;
+}
+
+/* Bottom Section */
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #3c4451;
+    padding: 20px 5%;
+    max-width: 1200px;
+    margin: 20px auto 0;
+}
+
+.back-to-top {
+    background-color: #3f51b5;
+    color: #fff;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-section {
+        min-width: 100%;
+    }
+
+    .footer-section h4::after {
+        margin: 8px auto 0;
+    }
+
+    .talk-to-support {
+        align-items: center;
+        text-align: left;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+}

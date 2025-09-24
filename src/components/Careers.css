@@ -1,0 +1,115 @@
+.careers-container {
+  padding: 80px 50px;
+  background: #f9f9f9;
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.careers-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #222;
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+/* Open Roles */
+.open-roles h3 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #007bff;
+}
+
+.open-roles ul {
+  list-style: none;
+  padding: 0;
+}
+
+.open-roles li {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 20px;
+  margin-bottom: 10px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.role-title {
+  font-weight: 600;
+}
+
+.role-location {
+  font-style: italic;
+  color: #555;
+}
+
+/* Why Work With Us */
+.why-work {
+  margin-top: 60px;
+}
+
+.why-work h3 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #007bff;
+}
+
+.why-work p {
+  margin-bottom: 20px;
+  line-height: 1.6;
+  color: #444;
+}
+
+.why-work ul {
+  list-style: disc;
+  padding-left: 20px;
+  color: #444;
+}
+
+/* Apply Form */
+.apply-form {
+  margin-top: 60px;
+}
+
+.apply-form h3 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #007bff;
+}
+
+.apply-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.apply-form input,
+.apply-form textarea {
+  padding: 12px 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.apply-form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.apply-form button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.apply-form button:hover {
+  background-color: #0056b3;
+}
