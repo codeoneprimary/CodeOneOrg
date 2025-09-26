@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Contact.css";
 import {
   FaPhoneAlt,
@@ -9,6 +9,98 @@ import {
 } from "react-icons/fa";
 
 const Contact = () => {
+  // State for form inputs
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "", // optional
+    subject: "",
+    message: "",
+  });
+
+  const [status, setStatus] = useState(null); // For error messages
+  const [showSuccess, setShowSuccess] = useState(false); // For success message popup
+  const [isSubmitting, setIsSubmitting] = useState(false); // Loading state
+
+  // Handle input changes
+  const handleChange = (e) => {
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  // Handle form submit
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Basic validation
+    if (
+      !formData.name ||
+      !formData.email ||
+      !formData.subject ||
+      !formData.message
+    ) {
+      setStatus({
+        success: false,
+        message: "Please fill in all required fields.",
+      });
+      return;
+    }
+
+    setIsSubmitting(true); // Start loading
+
+    try {
+      const response = await fetch("http://localhost:8080/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        }),
+      });
+
+      if (response.ok) {
+        // Show success message popup
+        setShowSuccess(true);
+
+        // Clear form fields
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          subject: "",
+          message: "",
+        });
+
+        // Clear any error messages
+        setStatus(null);
+
+        // Hide success message after 3 seconds
+        setTimeout(() => {
+          setShowSuccess(false);
+        }, 3000);
+      } else {
+        const errorData = await response.json();
+        setStatus({
+          success: false,
+          message: errorData.message || "Failed to send message.",
+        });
+      }
+    } catch (error) {
+      setStatus({
+        success: false,
+        message: "Error sending message: " + error.message,
+      });
+    } finally {
+      setIsSubmitting(false); // Stop loading
+    }
+  };
+
   return (
     <div className="contact-page-container">
       {/* ======= Header Banner ======= */}
@@ -86,30 +178,99 @@ const Contact = () => {
           {/* Right Side - Contact Form */}
           <div className="contact-form-side">
             <h2 className="form-title">Get In Touch</h2>
-            <form className="contact-form">
+            <form className="contact-form" onSubmit={handleSubmit}>
               <input
                 type="text"
+                name="name"
                 placeholder="Your Name"
                 className="form-input"
+                value={formData.name}
+                onChange={handleChange}
+                required
+                disabled={isSubmitting}
               />
               <input
                 type="email"
+                name="email"
                 placeholder="Your Email"
                 className="form-input"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                disabled={isSubmitting}
               />
               <input
                 type="tel"
+                name="phone"
                 placeholder="Phone Number"
                 className="form-input"
+                value={formData.phone}
+                onChange={handleChange}
+                disabled={isSubmitting}
+              />
+              <input
+                type="text"
+                name="subject"
+                placeholder="Subject"
+                className="form-input"
+                value={formData.subject}
+                onChange={handleChange}
+                required
+                disabled={isSubmitting}
               />
               <textarea
+                name="message"
                 placeholder="Your Message"
                 className="form-textarea"
+                value={formData.message}
+                onChange={handleChange}
+                required
+                disabled={isSubmitting}
               ></textarea>
-              <button type="submit" className="submit-button">
-                <FaPaperPlane className="send-icon" /> Send Message
+
+              <button
+                type="submit"
+                className="submit-button"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? (
+                  "Sending..."
+                ) : (
+                  <>
+                    <FaPaperPlane className="send-icon" /> Send Message
+                  </>
+                )}
               </button>
             </form>
+
+            {/* Success popup message */}
+            {showSuccess && (
+              <p
+                style={{
+                  marginTop: "10px",
+                  color: "green",
+                  fontWeight: "bold",
+                  backgroundColor: "#e0ffe0",
+                  padding: "10px",
+                  borderRadius: "5px",
+                }}
+              >
+                Message sent successfully!
+              </p>
+            )}
+
+            {/* Show error messages */}
+            {status && !status.success && (
+              <p
+                style={{
+                  marginTop: "10px",
+                  color: "red",
+                  fontWeight: "bold",
+                }}
+              >
+                {status.message}
+              </p>
+            )}
           </div>
         </div>
       </section>

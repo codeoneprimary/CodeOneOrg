@@ -97,7 +97,10 @@ const Hero = () => {
               </div>
             </div>
 
-            <button className="request-quote-button">Request A Quote</button>
+            {/* Updated: Wrapped button with Link for routing */}
+            <Link to="/contact">
+              <button className="request-quote-button">Request A Quote</button>
+            </Link>
           </div>
 
           {/* The Image Column */}
