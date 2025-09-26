@@ -217,7 +217,7 @@ body {
 }
 
 .about-section.dark-bg {
-    background-color:rgb(128, 128, 128);
+    background-color:rgba(0, 94, 255, 0.973);;
     color: #ffffff;
 }
 

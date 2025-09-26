@@ -36,23 +36,24 @@ const JobIntroSection = () => (
       <div className="intro-text-column">
         <p className="section-tag">OPPORTUNITIES</p>
         <h2 className="section-title">
-          Shape the Future
+          Discover a career where passion meets purpose.
           <br />
-          With <strong>Innovative Tech</strong>
+          <strong></strong>
         </h2>
         <p className="section-description">
-          Ready to take the next step in your career? Join our team of experts
-          who are passionate about delivering reliable IT solutions. We offer a
-          dynamic environment, continuous learning, and challenging projects.
+          At CodeOne Technologies, we combine expertise in staffing, IT
+          services, and digital solutions to help businesses scale faster and
+          smarter. Whether you need a skilled workforce, custom software, or a
+          strong online presence, we’ve got you covere
         </p>
 
         <div className="job-list-container">
           <h3 className="list-title">Current Openings:</h3>
           <ul className="job-list">
             <li>Senior React Developer (Remote)</li>
-            <li>Cloud Solutions Architect (Hybrid)</li>
+            <li>Mobail App Developer (On-site)</li>
             <li>Cybersecurity Analyst (On-site)</li>
-            <li>Salesforce Administrator (Remote)</li>
+            <li>Salesforce Dev (On-Site)</li>
           </ul>
         </div>
       </div>
@@ -104,7 +105,7 @@ const CareerFormSection = () => {
               <FaMapMarkerAlt /> 123 Tech Avenue, Innovation City
             </p>
             <p>
-              <FaEnvelope /> careers@yourcompany.com
+              <FaEnvelope /> codeoneprimary@gmail.com
             </p>
             <p>
               <FaPhone /> (555) 123-4567
