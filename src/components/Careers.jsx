@@ -1,61 +1,188 @@
-import React from "react";
-import "./Careers.css";
+import React, { useState } from "react";
+import {
+  FaHome,
+  FaChevronRight,
+  FaMapMarkerAlt,
+  FaEnvelope,
+  FaPhone,
+} from "react-icons/fa";
+import "./Career.css";
 
-const openRoles = [
-  { id: 1, title: "Salesforce Developer", location: "Chennai, India" },
-  { id: 2, title: "Full Stack Web Developer", location: "Remote" },
-  { id: 3, title: "Mobile App Developer", location: "Pune, India" },
-  { id: 4, title: "Digital Marketing Specialist", location: "Remote" },
-];
+// ✅ Import your image from assets
+import careerImage from "../assets/images/carrer1.png";
 
-const Careers = () => {
-  return (
-    <section className="careers-container">
-      <h2 className="careers-title">Careers at CodeOne Technologies</h2>
-
-      {/* Open Roles Section */}
-      <div className="open-roles">
-        <h3>Open Roles</h3>
-        <ul>
-          {openRoles.map((role) => (
-            <li key={role.id}>
-              <span className="role-title">{role.title}</span>
-              <span className="role-location">{role.location}</span>
-            </li>
-          ))}
-        </ul>
+// 🌟 Component: Header Section (Similar to About Us Header)
+const CareerHeader = () => (
+  <div
+    className="career-header-section"
+    // Replace with your actual banner image path or import another one if needed
+    style={{ backgroundImage: "url('/path-to-your-career-banner-image.jpg')" }}
+  >
+    <div className="header-overlay"></div>
+    <div className="header-content-v2">
+      <h1 className="header-main-title-v2">Join Our Team</h1>
+      <div className="header-breadcrumb-v2">
+        <FaHome style={{ marginRight: "5px" }} /> CodeOne Technologies
+        <FaChevronRight style={{ margin: "0 8px" }} /> Careers
       </div>
+    </div>
+  </div>
+);
 
-      {/* Why Work With Us Section */}
-      <div className="why-work">
-        <h3>Why Work With Us</h3>
-        <p>
-          At CodeOne Technologies, we value innovation, growth, and collaboration.
-          Join a team of passionate professionals and work on cutting-edge projects
-          in Salesforce, Web, Mobile, IT Staffing, and Digital Marketing domains.
+// 💻 Component: Job Listings and Intro
+const JobIntroSection = () => (
+  <section className="job-intro-section light-bg">
+    <div className="content-wrapper">
+      <div className="intro-text-column">
+        <p className="section-tag">OPPORTUNITIES</p>
+        <h2 className="section-title">
+          Shape the Future
+          <br />
+          With <strong>Innovative Tech</strong>
+        </h2>
+        <p className="section-description">
+          Ready to take the next step in your career? Join our team of experts
+          who are passionate about delivering reliable IT solutions. We offer a
+          dynamic environment, continuous learning, and challenging projects.
         </p>
-        <ul>
-          <li>Work with industry experts</li>
-          <li>Continuous learning and upskilling</li>
-          <li>Flexible work environment</li>
-          <li>Career growth opportunities</li>
-        </ul>
+
+        <div className="job-list-container">
+          <h3 className="list-title">Current Openings:</h3>
+          <ul className="job-list">
+            <li>Senior React Developer (Remote)</li>
+            <li>Cloud Solutions Architect (Hybrid)</li>
+            <li>Cybersecurity Analyst (On-site)</li>
+            <li>Salesforce Administrator (Remote)</li>
+          </ul>
+        </div>
       </div>
 
-      {/* Apply Form Section */}
-      <div className="apply-form">
-        <h3>Apply Now</h3>
-        <form>
-          <input type="text" placeholder="Full Name" required />
-          <input type="email" placeholder="Email Address" required />
-          <input type="text" placeholder="Position Applying For" required />
-          <input type="file" placeholder="Upload Resume" />
-          <textarea placeholder="Cover Letter / Message"></textarea>
-          <button type="submit">Submit Application</button>
+      <div className="intro-image-column">
+        <img
+          src={careerImage}
+          alt="Team collaboration and success"
+          className="career-intro-image"
+        />
+      </div>
+    </div>
+  </section>
+);
+
+// 📝 Component: Application Form
+const CareerFormSection = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    position: "",
+    message: "",
+  });
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Form Submitted:", formData);
+    alert("Application submitted successfully! We'll be in touch.");
+    // Add API or form handling logic here
+  };
+
+  return (
+    <section className="career-form-section dark-bg">
+      <div className="form-content-wrapper">
+        <div className="contact-info">
+          <p className="section-tag">APPLY NOW</p>
+          <h2 className="section-title">Ready for Your Next Challenge?</h2>
+          <p className="section-description">
+            Fill out the form to apply for any of our open positions. We look
+            forward to reviewing your application!
+          </p>
+          <div className="contact-details">
+            <p>
+              <FaMapMarkerAlt /> 123 Tech Avenue, Innovation City
+            </p>
+            <p>
+              <FaEnvelope /> careers@yourcompany.com
+            </p>
+            <p>
+              <FaPhone /> (555) 123-4567
+            </p>
+          </div>
+        </div>
+
+        <form className="application-form" onSubmit={handleSubmit}>
+          <div className="form-group">
+            <input
+              type="text"
+              name="name"
+              placeholder="Full Name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="email"
+              name="email"
+              placeholder="Email Address"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="tel"
+              name="phone"
+              placeholder="Phone Number"
+              value={formData.phone}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="text"
+              name="position"
+              placeholder="Position Applying For"
+              value={formData.position}
+              onChange={handleChange}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <textarea
+              name="message"
+              placeholder="Briefly tell us why you're a great fit..."
+              rows="4"
+              value={formData.message}
+              onChange={handleChange}
+              required
+            ></textarea>
+          </div>
+          <div className="form-group file-upload">
+            <label>Upload Resume (PDF/DOCX):</label>
+            <input type="file" required />
+          </div>
+          <button type="submit" className="submit-button">
+            Submit Application
+          </button>
         </form>
       </div>
     </section>
   );
 };
 
-export default Careers;
+function Career() {
+  return (
+    <div className="career-page-container">
+      <CareerHeader />
+      <JobIntroSection />
+      <CareerFormSection />
+    </div>
+  );
+}
+
+export default Career;

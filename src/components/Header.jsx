@@ -1,6 +1,6 @@
- import React from 'react';
-import { Link, NavLink } from 'react-router-dom'; 
-import './Header.css';
+import React from "react";
+import { Link, NavLink } from "react-router-dom";
+import "./Header.css";
 
 const Header = () => {
   return (
@@ -17,27 +17,42 @@ const Header = () => {
         <nav className="nav-menu">
           <ul>
             <li>
-              <NavLink to="/services" activeclassname="active">
+              <NavLink
+                to="/services"
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
                 Services
               </NavLink>
             </li>
             <li>
-              <NavLink to="/portfolio" activeclassname="active">
-                Portfolio / Case Studies
+              <NavLink
+                to="/blog"
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
+                Tech News
               </NavLink>
             </li>
             <li>
-              <NavLink to="/careers" activeclassname="active">
+              <NavLink
+                to="/careers"
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
                 Careers
               </NavLink>
             </li>
             <li>
-              <NavLink to="/about" activeclassname="active">
+              <NavLink
+                to="/about"
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
                 About Us
               </NavLink>
             </li>
             <li>
-              <NavLink to="/contact" activeclassname="active">
+              <NavLink
+                to="/contact"
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
                 Contact Us
               </NavLink>
             </li>

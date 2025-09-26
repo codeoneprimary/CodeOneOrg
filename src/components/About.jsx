@@ -1,97 +1,103 @@
-import React, { useState } from 'react';
-import './About.css';
+import React from "react";
+import { FaCheckCircle, FaHome, FaChevronRight } from "react-icons/fa";
+import "./About.css";
 
-// Reusable Accordion Component
-const Accordion = ({ title, content }) => {
-  const [isOpen, setIsOpen] = useState(false);
+// Import images from your src/assets/images folder
+import mainImage from "../assets/images/about11.png"; // replace path if needed
+import overlayImage from "../assets/images/about12.png"; // replace with overlay image if different
 
-  return (
-    <div className="accordion-item">
-      <button className="accordion-header" onClick={() => setIsOpen(!isOpen)}>
-        <span className="accordion-icon">{isOpen ? '−' : '+'}</span>
-        <h5 className="accordion-title">{title}</h5>
-      </button>
-      {isOpen && <div className="accordion-content">{content}</div>}
+// 🌟 Component: Header Section (Matching Image 1: About Us Banner)
+const AboutHeader = () => (
+  <div
+    className="about-header-section-v2"
+    // Update this with your actual banner image URL in public folder or import and use like below
+    style={{ backgroundImage: "url('/path-to-your-banner-image.jpg')" }}
+  >
+    <div className="header-overlay"></div>
+    <div className="header-content-v2">
+      <h1 className="header-main-title-v2">About Us</h1>
+      <div className="header-breadcrumb-v2">
+        <FaHome style={{ marginRight: "5px" }} />
+        CodeOne Technologies
+        <FaChevronRight style={{ margin: "0 8px" }} /> About Us
+      </div>
     </div>
-  );
-};
+  </div>
+);
+
+// 💻 Component: Image/Content Block (Matching Images 2 & 3: Ensuring Your Success & Feature List)
+const AboutImageContent = () => (
+  <section className="image-content-section light-bg">
+    <div className="content-wrapper">
+      <div className="image-column">
+        <div className="main-image-box">
+          {/* Use imported image */}
+          <img
+            src={mainImage}
+            alt="Man working with digital interface and globe graphic"
+            className="main-image"
+          />
+        </div>
+        {/* Dotted pattern for design accent */}
+        <div className="dotted-pattern"></div>
+      </div>
+
+      <div className="text-column">
+        <p className="section-tag">WHO WE ARE</p>
+        <h2 className="section-title">
+          Ensuring Your Success
+          <br />
+          Why Choose CodeOne Technologies
+        </h2>
+        <p className="section-description">
+          We’re not just another IT service provider. CodeOne Technologies was
+          founded with a simple belief: technology and talent together drive
+          transformation. From delivering next-gen digital solutions to
+          connecting organizations with the right professionals, we act as a
+          one-stop partner for growth.
+        </p>
+
+        {/* Feature List (Matching the checkbox layout) */}
+        <div className="feature-list">
+          <div className="feature-item">
+            <FaCheckCircle className="check-icon" />
+            <span>Technology Consultancy</span>
+          </div>
+          <div className="feature-item">
+            <FaCheckCircle className="check-icon" />
+            <span>Maintenance And Support</span>
+          </div>
+          <div className="feature-item">
+            <FaCheckCircle className="check-icon" />
+            <span>We Provide best services</span>
+          </div>
+          <div className="feature-item">
+            <FaCheckCircle className="check-icon" />
+            <span>Requirements Gathering</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+);
 
 function About() {
   return (
     <div className="about-page-container">
-      {/* Header Section */}
-      <div className="about-header-section">
-        <h1>About Us</h1>
-        <p>CodeOne Technologies > ABOUT US</p>
-      </div>
+      {/* 1. Header Section */}
+      <AboutHeader />
 
-      {/* Main Content Sections */}
+      {/* 2. Main Image/Content Section */}
+      <AboutImageContent />
+
+      {/* 3. Placeholder for your other content */}
       <section className="about-section dark-bg">
         <div className="about-section-content">
           <h2>Your Partner in Technology & Talent</h2>
           <p>
-            At **CodeOne Technologies**, we believe in the power of technology to transform businesses and careers. We are a leading IT services and consulting provider specializing in **Salesforce staffing and consulting, web development, and cybersecurity**. Our mission is to deliver innovative solutions and top-tier talent that empower our clients to achieve their goals.
+            This section serves as a clean, simple content block that you can
+            use for Mission, Vision, or any other introductory text.
           </p>
-        </div>
-      </section>
-
-      <section className="about-section light-bg">
-        <div className="about-section-content">
-          <h2>Salesforce Staffing & Consulting</h2>
-          <p>
-            With years of experience in the Salesforce ecosystem, our dedicated team of recruitment specialists has a deep understanding of the platform. We connect businesses with exceptional Salesforce professionals, from **Developers and Administrators to Architects and Project Managers**. Whether you need to build a new team, fill a critical role, or find a short-term consultant, we provide the talent you need to succeed.
-          </p>
-        </div>
-      </section>
-
-      <section className="about-section dark-bg">
-        <div className="about-section-content">
-          <h2>Expert Web Development</h2>
-          <p>
-            We don't just build websites; we create modern, responsive, and high-performing digital experiences. Our web development team uses cutting-edge technologies like **React, Angular, and Vue.js** to craft custom solutions tailored to your business needs. From e-commerce platforms to complex web applications, we focus on clean code, seamless user experience, and scalable architecture.
-          </p>
-        </div>
-      </section>
-
-      <section className="about-section light-bg">
-        <div className="about-section-content">
-          <h2>Comprehensive Cybersecurity Services</h2>
-          <p>
-            In today's digital landscape, security is paramount. **CodeOne Technologies** offers robust cybersecurity solutions to protect your critical assets. Our experts provide services like **threat detection and prevention, security audits, and compliance planning**. We help businesses identify vulnerabilities and implement proactive strategies to safeguard their data and maintain a secure digital environment.
-          </p>
-        </div>
-      </section>
-
-      <section className="about-image-content-section">
-        <div className="about-text-content">
-          <div className="text-block">
-            <h3>Why Choose CodeOne Technologies?</h3>
-            <p>
-              We are committed to delivering excellence through our tailored approach. We take the time to understand your unique challenges and provide flexible, professional solutions. Our extensive network of skilled professionals, combined with our in-depth market knowledge, ensures you receive the highest quality of service and talent.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Accordion/FAQ Section */}
-      <section className="about-accordion-section">
-        <div className="accordion-wrapper">
-          <Accordion
-            title="What types of Salesforce roles do you staff?"
-            content="We staff a wide range of Salesforce roles, including Salesforce Administrators, Developers, Business Analysts, Solution Architects, Technical Architects, and Project Managers."
-          />
-          <Accordion
-            title="What technologies do you use for web development?"
-            content="Our team is skilled in a variety of modern technologies, including JavaScript frameworks like React, Angular, and Vue.js, as well as Node.js, and various databases."
-          />
-          <Accordion
-            title="What cybersecurity services do you offer?"
-            content="We offer a full suite of cybersecurity services, including security assessments, vulnerability testing, threat detection and response, and security policy development."
-          />
-          <Accordion
-            title="How is CodeOne Technologies different from other tech companies?"
-            content="Our unique blend of top-tier staffing, specialized development, and dedicated cybersecurity expertise sets us apart. We offer a holistic approach to your technology needs, ensuring you have the right people and the right solutions to succeed."
-          />
         </div>
       </section>
     </div>

@@ -1,225 +1,456 @@
- import React, { useState } from 'react';
-import { Monitor, Database, Cloud, Zap, Users, ChevronDown, ChevronUp } from 'lucide-react';
+import React from "react";
+
+// Component for a single service card
+const ServiceCard = ({ icon, title, description }) => (
+  <div className="service-card">
+    <div className="icon-box">{icon}</div>
+    <h3 className="card-title">{title}</h3>
+    <p className="card-description">{description}</p>
+  </div>
+);
+
+// Component for the new header section
+const ServicesHeader = () => {
+  // Replaced react-icons with inline SVGs
+  const HomeIcon = () => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      fill="currentColor"
+      viewBox="0 0 16 16"
+      style={{ marginRight: "5px" }}
+    >
+      <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L8.707 1.5ZM14.5 4.5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .5-.5h2a.5.5 0 0 0-.5.5v3.5a.5.5 0 0 0 1 0V5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v3.5a.5.5 0 0 0 1 0V5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-10a.5.5 0 0 1-.5-.5v-7A.5.5 0 0 1 4.5 4.5h2z" />
+    </svg>
+  );
+  const ChevronRightIcon = () => (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      fill="currentColor"
+      viewBox="0 0 16 16"
+      style={{ margin: "0 8px" }}
+    >
+      <path d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+    </svg>
+  );
+
+  return (
+    <div
+      className="services-header-section"
+      style={{
+        backgroundImage:
+          "url('https://via.placeholder.com/1920x400/0033aa/ffffff?text=Services+Banner')",
+      }}
+    >
+      <div className="header-overlay"></div>
+      <div className="header-content-v2">
+        <h1 className="header-main-title-v2">Our Services</h1>
+        <div className="header-breadcrumb-v2">
+          <HomeIcon /> CodeOne Technologies
+          <ChevronRightIcon /> Services
+        </div>
+      </div>
+    </div>
+  );
+};
 
 const Services = () => {
-  const [expandedSection, setExpandedSection] = useState('discovery');
-
-  const services = [
-    {
-      icon: <Database className="w-12 h-12 text-cyan-400" />,
-      title: "Salesforce Integration",
-      description: "Seamlessly integrate different complex systems with Salesforce with our affordable Salesforce integration services. We are trusted for connecting Salesforce with different"
-    },
-    {
-      icon: <Monitor className="w-12 h-12 text-cyan-400" />,
-      title: "Salesforce AppExchange Application Development",
-      description: "We can help you at every stage of your app development from discovery, design, and implementation to the app listing and"
-    },
-    {
-      icon: <Cloud className="w-12 h-12 text-cyan-400" />,
-      title: "Salesforce Customization & Development",
-      description: "We use our knowledge and expertise in building Salesforce applications that address and resolve the needs of businesses, regardless of the"
-    }
-  ];
-
-  const exclusiveServices = [
-    {
-      icon: <Monitor className="w-12 h-12 text-cyan-400" />,
-      title: "Salesforce Implementation",
-      description: "Maximize your ROI with our end to end Salesforce implementation services"
-    },
-    {
-      icon: <Zap className="w-12 h-12 text-cyan-400" />,
-      title: "Lightning Experience & Lightning Components Development (LWC)",
-      description: "Lightning is Salesforce's reimagined UI"
-    },
-    {
-      icon: <Cloud className="w-12 h-12 text-cyan-400" />,
-      title: "Cloud Solution & Offshore Development",
-      description: "We are your virtual dedicated team of Software Developers and can remotely"
-    }
-  ];
-
-  const processSteps = [
-    {
-      id: 'discovery',
-      title: 'DISCOVERY',
-      content: 'CloudExped shall run a business process discovery workshop to understand and analyses your processes, goals, challenges and objectives and to check if these can be mapped to SFDC to achieve the stated objectives.'
-    },
-    {
-      id: 'proof',
-      title: 'PROOF OF CONCEPT',
-      content: 'We create a proof of concept to validate the technical feasibility and demonstrate core functionalities.'
-    },
-    {
-      id: 'plan',
-      title: 'PLAN OF ACTION (POA)',
-      content: 'Detailed project roadmap with timelines, milestones, and resource allocation for successful implementation.'
-    },
-    {
-      id: 'management',
-      title: 'PROJECT MANAGEMENT',
-      content: 'Comprehensive project management ensuring timely delivery and quality standards throughout the development process.'
-    },
-    {
-      id: 'handshake',
-      title: 'HANDSHAKE',
-      content: 'Final project handover with complete documentation and knowledge transfer to your team.'
-    },
-    {
-      id: 'support',
-      title: 'SUPPORT',
-      content: 'Ongoing support and maintenance to ensure optimal performance and continuous improvement.'
-    }
-  ];
-
-  const toggleSection = (sectionId) => {
-    setExpandedSection(expandedSection === sectionId ? null : sectionId);
+  // SVG representations for the new, relevant icons:
+  const icons = {
+    // Car/Mobility Icon (FaCar)
+    car: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="30"
+        height="30"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M10 20.25a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" />
+        <path d="M17 20.25a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" />
+        <path d="M5 18H3.75c-.69 0-1.25-.56-1.25-1.25V14h19v2.75c0 .69-.56 1.25-1.25 1.25H18" />
+        <path d="m5 18 1.48-6.42a2.25 2.25 0 0 1 2.14-1.58h6.76a2.25 2.25 0 0 1 2.14 1.58L18 18H5Z" />
+        <path d="M5 11.25V7.5a2.25 2.25 0 0 1 2.25-2.25h9.5A2.25 2.25 0 0 1 19 7.5V11.25" />
+      </svg>
+    ),
+    // Code Icon (FaCode - for development)
+    code: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="30"
+        height="30"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <polyline points="16 18 22 12 16 6"></polyline>
+        <polyline points="8 6 2 12 8 18"></polyline>
+      </svg>
+    ),
+    // Mobile Icon (FaMobileAlt)
+    mobile: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="30"
+        height="30"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+        <line x1="12" y1="18" x2="12" y2="18"></line>
+      </svg>
+    ),
+    // Cloud Icon (FaCloud - for Salesforce/Solutions)
+    cloud: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="30"
+        height="30"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path>
+      </svg>
+    ),
+    // Shield Icon (FaShieldAlt - for Security)
+    shield: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="30"
+        height="30"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+      </svg>
+    ),
+    // User Group Icon (FaUsers - for Staff/Training)
+    users: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="30"
+        height="30"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+        <circle cx="9" cy="7" r="4"></circle>
+        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+      </svg>
+    ),
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Services Section */}
-      <section className="py-16 px-4 max-w-6xl mx-auto">
-        <div className="grid md:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <div key={index} className="bg-white rounded-lg p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
-              <div className="mb-6 flex justify-center">
-                {service.icon}
-              </div>
-              <h3 className="text-xl font-bold text-gray-800 mb-4">{service.title}</h3>
-              <p className="text-gray-600 leading-relaxed">{service.description}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+    <div className="services-page-container">
+      <ServicesHeader />
+      <section className="services-container">
+        {/* Section Header */}
+        <div className="services-header">{/* New Header */}</div>
 
-      {/* Exclusive Services Section */}
-      <section className="py-16 px-4 bg-white">
-        <div className="max-w-6xl mx-auto text-center">
-          <div className="mb-4">
-            <span className="text-cyan-400 font-semibold tracking-wider">WHAT WE DO</span>
-          </div>
-          <h2 className="text-4xl font-bold text-gray-800 mb-16">
-            We provide exclusive services<br />
-            for your business
-          </h2>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            {exclusiveServices.map((service, index) => (
-              <div key={index} className="text-center group">
-                <div className="mb-6 flex justify-center group-hover:scale-110 transition-transform duration-300">
-                  {service.icon}
-                </div>
-                <h3 className="text-xl font-bold text-gray-800 mb-4">{service.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{service.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+        {/* Services Grid (now with six cards) */}
+        <div className="cards-grid six-column-grid">
+          {/* Card 1: Web Development (Code Icon) */}
+          <ServiceCard
+            icon={icons.code}
+            title="Web Development"
+            description="We provide cutting-edge web development services tailored to meet your business goals and ensure a seamless user experience."
+          />
 
-      {/* Process Section */}
-      <section className="py-16 px-4 bg-gray-50">
-        <div className="max-w-4xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
-            <div className="space-y-4">
-              <div className="relative">
-                <img 
-                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300' viewBox='0 0 400 300'%3E%3Crect width='400' height='300' fill='%23f3f4f6'/%3E%3Ctext x='200' y='150' text-anchor='middle' fill='%236b7280' font-size='14'%3ETeam Collaboration%3C/text%3E%3C/svg%3E"
-                  alt="Team collaboration" 
-                  className="rounded-lg shadow-lg w-full"
-                />
-                <div className="absolute -bottom-4 -right-4 w-32 h-24 bg-gray-600 rounded-lg shadow-lg">
-                  <img 
-                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='128' height='96' viewBox='0 0 128 96'%3E%3Crect width='128' height='96' fill='%234b5563'/%3E%3Ccircle cx='64' cy='48' r='16' fill='%23ffffff'/%3E%3C/svg%3E"
-                    alt="Professional" 
-                    className="w-full h-full object-cover rounded-lg"
-                  />
-                </div>
-              </div>
-            </div>
-            
-            <div>
-              <span className="text-cyan-400 font-semibold tracking-wider">DISCOVERY</span>
-              <div className="mt-8 space-y-4">
-                {processSteps.map((step) => (
-                  <div key={step.id} className="border-b border-gray-200 pb-4">
-                    <button
-                      onClick={() => toggleSection(step.id)}
-                      className="flex items-center justify-between w-full text-left py-2 font-semibold text-gray-700 hover:text-cyan-600 transition-colors"
-                    >
-                      <span>{step.title}</span>
-                      {expandedSection === step.id ? (
-                        <ChevronUp className="w-5 h-5" />
-                      ) : (
-                        <ChevronDown className="w-5 h-5" />
-                      )}
-                    </button>
-                    {expandedSection === step.id && (
-                      <div className="mt-2 text-gray-600 leading-relaxed">
-                        {step.content}
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+          {/* Card 2: Android & IOS (Mobile Icon) */}
+          <ServiceCard
+            icon={icons.mobile}
+            title="Android & IOS"
+            description="Build powerful, cross-platform mobile applications for both Android and iOS devices, ensuring maximum market reach."
+          />
 
-          {/* Why Choose Us Section */}
-          <div className="bg-white rounded-lg p-8 shadow-lg">
-            <div className="grid md:grid-cols-2 gap-8 items-center">
-              <div>
-                <span className="text-cyan-400 font-semibold tracking-wider">ABOUT US</span>
-                <h2 className="text-3xl font-bold text-gray-800 mt-4 mb-6">
-                  Why Most People Choose Our Business Solutions
-                </h2>
-                <div className="space-y-4">
-                  <div className="border-b border-gray-200 pb-4">
-                    <div className="flex items-center justify-between">
-                      <span className="font-semibold text-gray-700">DISCOVERY</span>
-                    </div>
-                    <p className="mt-2 text-gray-600 text-sm">
-                      CloudExped shall run a business process discovery workshop to understand and analyses your processes, goals, challenges and objectives and to check if these can be mapped to SFDC to achieve the stated objectives.
-                    </p>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="relative">
-                <img 
-                  src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='350' height='250' viewBox='0 0 350 250'%3E%3Crect width='350' height='250' fill='%23f3f4f6'/%3E%3Ctext x='175' y='125' text-anchor='middle' fill='%236b7280' font-size='14'%3EWorkspace Environment%3C/text%3E%3C/svg%3E"
-                  alt="Workspace" 
-                  className="rounded-lg shadow-lg w-full"
-                />
-                <div className="absolute -top-4 -left-4 w-24 h-32 bg-gray-600 rounded-lg shadow-lg">
-                  <img 
-                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='128' viewBox='0 96 128'%3E%3Crect width='96' height='128' fill='%234b5563'/%3E%3Ccircle cx='48' cy='64' r='20' fill='%23ffffff'/%3E%3C/svg%3E"
-                    alt="Team member" 
-                    className="w-full h-full object-cover rounded-lg"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+          {/* Card 3: Salesforce Solutions (Cloud Icon) */}
+          <ServiceCard
+            icon={icons.cloud}
+            title="Salesforce Solutions"
+            description="Expert consultancy and implementation services for Salesforce to optimize your CRM, sales, and customer service processes."
+          />
 
-      {/* CTA Section */}
-      <section className="py-16 px-4 bg-gradient-to-r from-cyan-500 to-blue-600">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold text-white mb-6">
-            Ready to Transform Your Business with Salesforce?
-          </h2>
-          <p className="text-xl text-cyan-100 mb-8">
-            Let's discuss how our expertise can help you achieve your goals
-          </p>
-          <button className="bg-white text-cyan-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors duration-300 shadow-lg">
-            Get Started Today
-          </button>
+          {/* Card 4: Staff Management (Users Icon) */}
+          <ServiceCard
+            icon={icons.users}
+            title="Staff Management"
+            description="Solutions for efficient HR and staff management, including payroll, scheduling, and performance tracking systems."
+          />
+
+          {/* Card 5: Digital Marketing (Shield Icon) */}
+          <ServiceCard
+            icon={icons.shield}
+            title="Digital Marketing"
+            description="Comprehensive digital marketing strategies to boost your online presence, drive traffic, and increase conversions."
+          />
+
+          {/* Card 6: Corporate Training (Car Icon - using a mobility theme icon) */}
+          <ServiceCard
+            icon={icons.car}
+            title="Corporate Training"
+            description="Professional training and workshops for your employees on the latest technologies, soft skills, and industry best practices."
+          />
         </div>
+
+        {/* The scroll-up button visible in the bottom right of the screenshot */}
+        <a href="#top" className="scroll-up-button">
+          ↑
+        </a>
       </section>
+      <style>
+        {`
+          @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+          /* --- General Reset & Utility Styles --- */
+          * {
+              box-sizing: border-box;
+          }
+
+          body {
+              font-family: 'Poppins', sans-serif;
+              margin: 0;
+              padding: 0;
+              background-color: #ffffff;
+          }
+
+          .services-page-container {
+              padding: 0;
+              margin: 0;
+          }
+
+          /* ========================================================== */
+          /* 1. HEADER SECTION (Matching pattern) */
+          /* ========================================================== */
+          .services-header-section {
+              position: relative;
+              background-image: url('https://via.placeholder.com/1920x400/0033aa/ffffff?text=Services+Banner');
+              background-size: cover;
+              background-position: center;
+              height: 350px;
+              display: flex;
+              align-items: center;
+              color: #ffffff;
+              overflow: hidden;
+          }
+
+          .header-overlay {
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              background: linear-gradient(to right, rgba(0, 51, 170, 0.9), rgba(0, 0, 0, 0.7));
+          }
+
+          .header-content-v2 {
+              position: relative;
+              max-width: 1200px;
+              width: 100%;
+              margin: 0 auto;
+              padding: 0 20px;
+              z-index: 10;
+          }
+
+          .header-main-title-v2 {
+              font-size: 3.5rem;
+              font-weight: 700;
+              color: #ffffff;
+              margin: 0 0 10px 0;
+          }
+
+          .header-breadcrumb-v2 {
+              display: inline-flex;
+              align-items: center;
+              font-size: 1rem;
+              color: #ffffff;
+              font-weight: 500;
+              opacity: 0.8;
+          }
+
+          /* Custom header shape */
+          .services-header-section::before {
+              content: '';
+              position: absolute;
+              bottom: -150px;
+              left: -150px;
+              width: 300px;
+              height: 300px;
+              background-color: #007bff;
+              clip-path: polygon(0% 100%, 100% 100%, 100% 0%);
+              z-index: 15;
+              transform: rotate(-45deg);
+              opacity: 0.8;
+          }
+
+          /* ========================================================== */
+          /* 2. SERVICES SECTION (Grid and Cards) */
+          /* ========================================================== */
+
+          /* Container for the entire section */
+          .services-container {
+              padding: 80px 20px;
+              background-color: #f8f9fa; /* Light background color from the screenshot */
+              font-family: 'Poppins', sans-serif;
+              text-align: center;
+          }
+
+          /* Section Header */
+          .services-header {
+              max-width: 800px;
+              margin: 0 auto 50px auto;
+          }
+
+          .section-pretitle {
+              font-size: 1.4rem;
+              font-weight: 600;
+              color: #007bff;
+              text-transform: uppercase;
+              letter-spacing: 1px;
+              margin-bottom: 5px;
+          }
+
+          .section-title {
+              font-size: 2rem;
+              font-weight: 700;
+              color: #343a40; /* Dark text color */
+              margin-bottom: 10px;
+              position: relative;
+              display: inline-block;
+          }
+
+          .title-underline {
+              width: 50px;
+              height: 3px;
+              background-color: #007bff; /* Blue underline */
+              margin: 0 auto 20px auto;
+          }
+
+          .section-subtitle {
+              font-size: 1rem;
+              color: #6c757d;
+              max-width: 600px;
+              margin: 0 auto;
+          }
+
+          /* Services Grid */
+          .cards-grid {
+              display: flex;
+              justify-content: center;
+              gap: 30px; /* Gap between cards */
+              max-width: 1200px;
+              margin: 0 auto;
+              flex-wrap: wrap;
+          }
+
+          .service-card {
+              background-color: white;
+              padding: 40px 30px;
+              border-radius: 8px;
+              box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+              text-align: center;
+              flex: 0 0 calc(33.33% - 20px);
+              max-width: calc(33.33% - 20px);
+              transition: transform 0.3s ease;
+              margin-bottom: 30px;
+          }
+
+          .service-card:hover {
+              transform: translateY(-5px);
+          }
+
+          /* Icon Styling */
+          .icon-box {
+              width: 60px;
+              height: 60px;
+              background-color: #e6f2ff; /* Very light blue background */
+              color: #007bff; /* Blue icon color */
+              border-radius: 50%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              margin: 0 auto 25px auto;
+              border: 2px solid #007bff; /* Blue ring around the icon box */
+              position: relative;
+          }
+
+          /* Card Content */
+          .card-title {
+              font-size: 1.3rem;
+              font-weight: 700;
+              color: #343a40;
+              margin-bottom: 15px;
+          }
+
+          .card-description {
+              font-size: 0.95rem;
+              line-height: 1.7;
+              color: #6c757d;
+          }
+
+          /* Scroll Up Button */
+          .scroll-up-button {
+              position: fixed;
+              bottom: 20px;
+              right: 20px;
+              width: 40px;
+              height: 40px;
+              background-color: #007bff;
+              color: white;
+              text-align: center;
+              line-height: 40px;
+              font-size: 1.5rem;
+              border-radius: 5px;
+              text-decoration: none;
+              z-index: 1000;
+              box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+          }
+
+          /* Responsive Adjustments */
+          @media (max-width: 1200px) {
+              .service-card {
+                  flex: 0 0 calc(50% - 15px);
+                  max-width: calc(50% - 15px);
+              }
+          }
+
+          @media (max-width: 768px) {
+              .section-title {
+                  font-size: 1.8rem;
+              }
+              .service-card {
+                  flex: 0 0 100%;
+                  max-width: 90%;
+              }
+          }
+        `}
+      </style>
     </div>
   );
 };
