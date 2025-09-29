@@ -62,7 +62,7 @@ function Footer() {
           <div className="talk-to-support">
             <p className="support-title">Talk To Our Support</p>
             <div className="phone-number">
-              <span className="number">020-68310024</span>
+              <span className="number">8208171281</span>
               <div className="chat-icon" aria-label="Phone icon" role="img">
                 📞
               </div>
@@ -172,7 +172,10 @@ function Footer() {
       </div>
 
       <div className="footer-bottom">
-        <p>Copyright © 2025 CodeOne Technologies. All Rights Reserved.</p>
+        <p>
+          Copyright © 2025 CodeOne Technologies Solution Pvt Ltd. All Rights
+          Reserved.
+        </p>
         <button
           className="back-to-top"
           onClick={scrollToTop}
