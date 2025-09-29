@@ -1,21 +1,39 @@
  /* src/App.css */
 
+/* Reset and global styles */
 html, body, #root {
   height: 100%;
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  background-color: #fff; /* optional: set a default background */
-  scroll-behavior: smooth; /* smooth scrolling for anchor links */
+  background-color: #fff; /* optional */
+  scroll-behavior: smooth;
 }
 
-/* Apply box-sizing globally */
+/* Box sizing for all elements */
 *, *::before, *::after {
   box-sizing: border-box;
 }
 
+/* Main app container fills viewport vertically */
 .App {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Always fill viewport height */
+  min-height: 100vh;
+}
+
+/* Responsive container for layout */
+.container {
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px; /* optional: spacing between children */
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    padding: 10px;
+    gap: 10px;
+  }
 }
