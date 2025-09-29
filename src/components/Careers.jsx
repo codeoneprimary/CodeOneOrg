@@ -76,6 +76,7 @@ const CareerFormSection = () => {
   });
 
   const [resumeFile, setResumeFile] = useState(null);
+  const [loading, setLoading] = useState(false); // ⬅ Loading state
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -88,6 +89,11 @@ const CareerFormSection = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (!resumeFile) {
+      alert("Please select a resume file.");
+      return;
+    }
+
     const formPayload = new FormData();
     formPayload.append("fullName", formData.name);
     formPayload.append("email", formData.email);
@@ -97,10 +103,9 @@ const CareerFormSection = () => {
     formPayload.append("resume", resumeFile);
 
     try {
-      await axios.post("http://localhost:8080/api/career/apply", formPayload, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
+      setLoading(true); // ⬅ Show spinner
+      await axios.post("http://localhost:8082/api/career/apply", formPayload, {
+        headers: { "Content-Type": "multipart/form-data" },
       });
 
       alert("Application submitted successfully!");
@@ -115,6 +120,8 @@ const CareerFormSection = () => {
     } catch (error) {
       console.error("Error submitting form:", error);
       alert("Failed to submit application. Please try again.");
+    } finally {
+      setLoading(false); // ⬅ Hide spinner
     }
   };
 
@@ -130,7 +137,7 @@ const CareerFormSection = () => {
           </p>
           <div className="contact-details">
             <p>
-              <FaMapMarkerAlt /> 123 Tech Avenue, Innovation City
+              <FaMapMarkerAlt /> Joyville Hadapsar Annexe
             </p>
             <p>
               <FaEnvelope /> codeoneprimary@gmail.com
@@ -200,8 +207,12 @@ const CareerFormSection = () => {
               required
             />
           </div>
-          <button type="submit" className="submit-button">
-            Submit Application
+          <button
+            type="submit"
+            className="submit-button"
+            disabled={loading} // ⬅ Disable while loading
+          >
+            {loading ? "Uploading..." : "Submit Application"}{" "}
           </button>
         </form>
       </div>

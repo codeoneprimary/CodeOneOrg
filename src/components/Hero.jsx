@@ -1,5 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom"; // Import Link for routing
+import { Link } from "react-router-dom";
+import { ReactTyped } from "react-typed"; // ✅ import typed effect
 import "./Hero.css";
 
 const Hero = () => {
@@ -7,12 +8,24 @@ const Hero = () => {
     <>
       {/* -------------------- Top Slider/Hero Section -------------------- */}
       <section className="hero-container">
-        <div className="hero-overlay"></div> {/* Dark overlay layer */}
+        <div className="hero-overlay"></div>
         <div className="hero-content">
-          <p className="hero-small-text">TECH TALENT TOGETHER</p>
-          <h1 className="hero-title">
-            ONE TEAM LIMITLESS INNOVATION
+          <p className="hero-small-text">
             <br />
+            <br />
+            <br />
+            <br />
+            One Team, One Vision, Creating Tomorrow Through Innovation
+          </p>
+
+          {/* ✅ Typewriter effect here */}
+          <h1 className="hero-title">
+            <ReactTyped
+              strings={["ONE TEAM LIMITLESS INNOVATION"]}
+              typeSpeed={70} // typing speed
+              backSpeed={40} // erase speed
+              loop // keep repeating
+            />
           </h1>
 
           <div className="hero-buttons">
@@ -97,7 +110,6 @@ const Hero = () => {
               </div>
             </div>
 
-            {/* Updated: Wrapped button with Link for routing */}
             <Link to="/contact">
               <button className="request-quote-button">Request A Quote</button>
             </Link>

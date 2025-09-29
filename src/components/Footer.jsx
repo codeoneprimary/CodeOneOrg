@@ -1,16 +1,60 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import "./Footer.css";
 
 function Footer() {
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  // Simple email validation regex
+  const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+  const handleSubscribe = async () => {
+    if (!email) {
+      setMessage("Please enter an email address.");
+      return;
+    }
+    if (!isValidEmail(email)) {
+      setMessage("Please enter a valid email address.");
+      return;
+    }
+
+    setLoading(true);
+    setMessage("");
+
+    try {
+      // Using full backend URL
+      await axios.post("http://localhost:8080/api/newsletter/subscribe", {
+        email,
+      });
+      setMessage("✅ Successfully subscribed!");
+      setEmail("");
+    } catch (error) {
+      if (error.response?.status === 400) {
+        setMessage("⚠️ Invalid or already subscribed email.");
+      } else {
+        setMessage("❌ Subscription failed. Try again later.");
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Scroll smoothly to top
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <footer className="footer-container">
       <div className="footer-content">
         {/* About Section */}
         <div className="footer-section footer-about">
           <p>
-            CodeOne carry out your company hr <br />
+            CodeOne carry out your company HR <br />
             service needs to providing training <br />
-            and managing the hR department <br />
+            and managing the HR department <br />
             company. Our consultants provide <br />
             HR outsourcing and inclusive <br />
             services.
@@ -19,7 +63,9 @@ function Footer() {
             <p className="support-title">Talk To Our Support</p>
             <div className="phone-number">
               <span className="number">020-68310024</span>
-              <div className="chat-icon">📞</div>
+              <div className="chat-icon" aria-label="Phone icon" role="img">
+                📞
+              </div>
             </div>
           </div>
         </div>
@@ -32,62 +78,91 @@ function Footer() {
             latest product news
           </p>
           <div className="newsletter-form">
-            <input type="email" placeholder="Your email address" />
-            <button className="subscribe-btn">➤</button>
+            <input
+              type="email"
+              placeholder="Your email address"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              disabled={loading}
+              aria-label="Email address"
+            />
+            <button
+              className="subscribe-btn"
+              onClick={handleSubscribe}
+              disabled={loading}
+              aria-label="Subscribe to newsletter"
+            >
+              {loading ? "⏳" : "➤"}
+            </button>
           </div>
+          {message && (
+            <p
+              className="subscription-message"
+              role="alert"
+              aria-live="polite"
+              aria-atomic="true"
+            >
+              {message}
+            </p>
+          )}
         </div>
 
         {/* Follow Us Section */}
         <div className="footer-section footer-social">
           <h4>FOLLOW US ON</h4>
           <div className="social-icons">
-            {/* Facebook Icon */}
+            {/* Facebook */}
             <a
               href="https://www.facebook.com/yourprofile"
               target="_blank"
               rel="noopener noreferrer"
               className="social-icon"
+              aria-label="Facebook"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
                 height="24"
-                viewBox="0 0 24 24"
                 fill="currentColor"
+                viewBox="0 0 24 24"
               >
                 <path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.908c0-.817.09-1.192 1.176-1.192h2.824v-5h-3.617c-3.238 0-5.383 1.52-5.383 4.722v3.278z" />
               </svg>
             </a>
-            {/* Instagram Icon */}
+
+            {/* Instagram */}
             <a
-              href="https://www.instagram.com/codeonetechnologies?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+              href="https://www.instagram.com/codeonetechnologies"
               target="_blank"
               rel="noopener noreferrer"
               className="social-icon"
+              aria-label="Instagram"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
                 height="24"
-                viewBox="0 0 24 24"
                 fill="currentColor"
+                viewBox="0 0 24 24"
               >
-                <path d="M12 2.163c3.204 0 3.584.012 4.85.071 1.173.061 1.805.249 2.227.415.56.217.96.477 1.385.9.426.426.687.825.903 1.385.166.422.355 1.054.416 2.227.059 1.266.071 1.646.071 4.85s-.012 3.584-.071 4.85c-.061 1.173-.249 1.805-.415 2.227-.217.56-.477.96-.9 1.385-.426.426-.825.687-1.385.903-.422.166-1.054.355-2.227.416-1.266.059-1.646.071-4.85.071s-3.584-.012-4.85-.071c-1.173-.061-1.805-.249-2.227-.415-.56-.217-.96-.477-1.385-.9-.426-.426-.687-.825-.903-1.385-.166-.422-.355-1.054-.416-2.227-.059-1.266-.071-1.646-.071-4.85s.012-3.584.071-4.85c.061-1.173.249-1.805.415-2.227.217-.56.477-.96.9-1.385.426-.426.825-.687 1.385-.903.422-.166 1.054-.355 2.227-.416C8.416 2.175 8.796 2.163 12 2.163zm0-2.163c-3.837 0-4.336.014-5.834.077-1.503.064-2.505.28-3.19.544-.725.279-1.366.699-1.989 1.32-.622.623-1.041 1.264-1.321 1.989-.264.685-.48 1.687-.544 3.19-.063 1.498-.077 1.996-.077 5.834s.014 4.336.077 5.834c.064 1.503.28 2.505.544 3.19.279.725.699 1.366 1.32 1.989.623.622 1.264 1.041 1.989 1.321.685.264 1.687.48 3.19.544 1.498.063 1.996.077 5.834.077s4.336-.014 5.834-.077c1.503-.064 2.505-.28 3.19-.544.725-.279 1.366-.699 1.989-1.32.622-.623 1.041-1.264 1.321-1.989.264-.685.48-1.687.544-3.19.063-1.498.077-1.996.077-5.834s-.014-4.336-.077-5.834c-.064-1.503-.28-2.505-.544-3.19-.279-.725-.699-1.366-1.32-1.989-.623-.622-1.264-1.041-1.989-1.321-.685-.264-1.687-.48-3.19-.544-1.498-.063-1.996-.077-5.834-.077zm0 8.019c-2.199 0-3.981 1.782-3.981 3.981s1.782 3.981 3.981 3.981 3.981-1.782 3.981-3.981-1.782-3.981-3.981-3.981zm0 6.577c-1.438 0-2.596-1.159-2.596-2.596s1.158-2.596 2.596-2.596 2.596 1.159 2.596 2.596-1.158 2.596-2.596 2.596zm5.16-6.882c-.596 0-1.08.484-1.08 1.08s.484 1.08 1.08 1.08 1.08-.484 1.08-1.08-.483-1.08-1.08-1.08z" />
+                <path d="M7.5,2h9A5.5,5.5,0,0,1,22,7.5v9A5.5,5.5,0,0,1,16.5,22h-9A5.5,5.5,0,0,1,2,16.5v-9A5.5,5.5,0,0,1,7.5,2ZM12,7.5A4.5,4.5,0,1,0,16.5,12,4.505,4.505,0,0,0,12,7.5Zm6.5-.9a1.1,1.1,0,1,0,1.1,1.1A1.1,1.1,0,0,0,18.5,6.6Z" />
               </svg>
             </a>
-            {/* LinkedIn Icon */}
+
+            {/* LinkedIn */}
             <a
               href="https://www.linkedin.com/in/codeone-technologies-90bb28380"
               target="_blank"
               rel="noopener noreferrer"
               className="social-icon"
+              aria-label="LinkedIn"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="24"
                 height="24"
-                viewBox="0 0 24 24"
                 fill="currentColor"
+                viewBox="0 0 24 24"
               >
                 <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 6.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.011-3.922v-2.147z" />
               </svg>
@@ -98,7 +173,13 @@ function Footer() {
 
       <div className="footer-bottom">
         <p>Copyright © 2025 CodeOne Technologies. All Rights Reserved.</p>
-        <button className="back-to-top">↑</button>
+        <button
+          className="back-to-top"
+          onClick={scrollToTop}
+          aria-label="Back to top"
+        >
+          ↑
+        </button>
       </div>
     </footer>
   );

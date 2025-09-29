@@ -20,7 +20,7 @@ html, body {
   align-items: center;
   width: 100%; /* Changed from 100vw to 100% to fix scrollbar */
   height: 100vh;
-  background-image: url('../assets/images/hero.png');
+  background-image: url('../assets/images/heroo.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -222,7 +222,7 @@ html, body {
 /* Image Column (Right Side) */
 .about-image-container {
   flex: 3; /* 20% */
-  background-image: url('../assets/images/about12.png');
+  background-image: url('../assets/images/hero2.jpg');
   background-size: cover;
   background-position: center;
   min-height: 400px;

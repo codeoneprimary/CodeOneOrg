@@ -9,7 +9,6 @@ import {
 } from "react-icons/fa";
 
 const Contact = () => {
-  // State for form inputs
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -18,11 +17,10 @@ const Contact = () => {
     message: "",
   });
 
-  const [status, setStatus] = useState(null); // For error messages
-  const [showSuccess, setShowSuccess] = useState(false); // For success message popup
-  const [isSubmitting, setIsSubmitting] = useState(false); // Loading state
+  const [status, setStatus] = useState(null);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Handle input changes
   const handleChange = (e) => {
     setFormData((prev) => ({
       ...prev,
@@ -30,11 +28,9 @@ const Contact = () => {
     }));
   };
 
-  // Handle form submit
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Basic validation
     if (
       !formData.name ||
       !formData.email ||
@@ -48,10 +44,12 @@ const Contact = () => {
       return;
     }
 
-    setIsSubmitting(true); // Start loading
+    setIsSubmitting(true);
 
     try {
-      const response = await fetch("http://localhost:8080/api/contact", {
+      const sentTime = new Date().toISOString();
+
+      const response = await fetch("http://localhost:8081/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -59,16 +57,15 @@ const Contact = () => {
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
+          phone: formData.phone,
           subject: formData.subject,
           message: formData.message,
+          sentTime: sentTime,
         }),
       });
 
       if (response.ok) {
-        // Show success message popup
         setShowSuccess(true);
-
-        // Clear form fields
         setFormData({
           name: "",
           email: "",
@@ -76,11 +73,7 @@ const Contact = () => {
           subject: "",
           message: "",
         });
-
-        // Clear any error messages
         setStatus(null);
-
-        // Hide success message after 3 seconds
         setTimeout(() => {
           setShowSuccess(false);
         }, 3000);
@@ -97,7 +90,7 @@ const Contact = () => {
         message: "Error sending message: " + error.message,
       });
     } finally {
-      setIsSubmitting(false); // Stop loading
+      setIsSubmitting(false);
     }
   };
 
@@ -131,7 +124,7 @@ const Contact = () => {
                 </div>
                 <div className="detail-info">
                   <p className="detail-label">Contact Phone</p>
-                  <p className="detail-value">+55 (9900) 666 22</p>
+                  <p className="detail-value">+918208171281</p>
                 </div>
               </div>
 
@@ -152,9 +145,10 @@ const Contact = () => {
                 <div className="detail-info">
                   <p className="detail-label">Contact Location</p>
                   <p className="detail-value multi-line">
-                    18/2, Topkhana Road, Australia.
+                    Joyville Hadapsar Annexe T3 Building, 22nd Floor Shewalwadi
+                    Village,
                     <br />
-                    27 Division St, New York, USA
+                    Hadapsar Annexe Pune – 412307 Maharashtra, India
                   </p>
                 </div>
               </div>
@@ -166,9 +160,9 @@ const Contact = () => {
                 <div className="detail-info">
                   <p className="detail-label">Office Time</p>
                   <p className="detail-value multi-line">
-                    Mon- Fri: 7.00 - 22.00
+                    Mon- Fri: 9.00 AM - 7.00 PM
                     <br />
-                    St-sun: 9.00 - 20.00
+                    St-sun:Closed
                   </p>
                 </div>
               </div>
@@ -243,7 +237,6 @@ const Contact = () => {
               </button>
             </form>
 
-            {/* Success popup message */}
             {showSuccess && (
               <p
                 style={{
@@ -259,7 +252,6 @@ const Contact = () => {
               </p>
             )}
 
-            {/* Show error messages */}
             {status && !status.success && (
               <p
                 style={{
