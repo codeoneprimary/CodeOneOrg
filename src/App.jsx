@@ -9,6 +9,7 @@ import Service from "./components/Service";
 import Careers from "./components/Careers";
 import Services from "./components/services";
 import Blog from "./components/Blog";
+import WhatsAppButton from "./components/WhatsAppButton"; // ✅ Import WhatsApp button
 import "./App.css";
 
 function App() {
@@ -16,7 +17,6 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Header />
-
         <main style={{ flex: 1 }}>
           <Routes>
             <Route path="/" element={<Hero />} />
@@ -28,8 +28,8 @@ function App() {
             <Route path="/blog" element={<Blog />} /> {/* The new route */}
           </Routes>
         </main>
-
         <Footer />
+        <WhatsAppButton /> {/* ✅ Always visible on all pages */}
       </div>
     </BrowserRouter>
   );
