@@ -13,12 +13,13 @@
 
 /* Desktop container */
 .header-container {
-  max-width: 1200px;
+  max-width: 1200px;      /* ✅ prevent too wide layouts */
   margin: 0 auto;
   padding: 15px 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative; /* for absolute menu positioning */
 }
 
 /* Logo */
@@ -34,31 +35,7 @@
   color: #222;
 }
 
-/* Menu icon (hamburger / vertical 3 dots) */
-.menu-icon {
-  display: none;
-  font-size: 24px;
-  cursor: pointer;
-  color: #333;
-
-  /* Added border */
-  border: 2px solid #333;    /* fixed border size */
-  border-radius: 4px;
-  padding: 4px 8px;
-  box-sizing: content-box;
-  transition: border-color 0.3s ease, color 0.3s ease;
-}
-
-.menu-icon:hover {
-  border-color: #007bff;
-  color: #007bff;
-}
-
 /* Nav Menu */
-.nav-menu {
-  display: flex;
-}
-
 .nav-menu ul {
   display: flex;
   list-style: none;
@@ -85,67 +62,68 @@
   padding-bottom: 3px;
 }
 
-/* 📱 Responsive for tablets & mobiles */
+/* MENU ICON - hidden on desktop */
+.menu-icon {
+  font-size: 1.8rem;
+  cursor: pointer;
+  display: none; /* hidden by default */
+  user-select: none;
+  color: #007bff;
+}
+
+/* MOBILE & TABLET styles */
 @media (max-width: 768px) {
   .header-container {
     padding: 10px 20px;
-    flex-direction: row;
+    flex-direction: row; /* keep logo and icon on same line */
+    justify-content: space-between;
     align-items: center;
   }
 
+  .logo-link {
+    font-size: 1.5rem;
+    margin-bottom: 0;
+  }
+
+  /* Show menu icon on mobile */
   .menu-icon {
     display: block;
   }
 
+  /* Nav Menu - hidden by default */
   .nav-menu {
+    display: none;
     position: absolute;
-    top: 65px;
+    top: 60px; /* adjust as needed */
     right: 20px;
     background: #fff;
+    border: 1px solid #eee;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 6px;
     width: 200px;
-    border: 1px solid #ddd;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    display: none;
-    flex-direction: column;
-    padding: 10px 0;
-    border-radius: 8px;
-    z-index: 1001;
+    padding: 15px 20px;
+    z-index: 1500;
   }
 
+  /* Show nav menu when open */
   .nav-menu.open {
-    display: flex;
+    display: block;
   }
 
   .nav-menu ul {
     flex-direction: column;
-    gap: 0;
-  }
-
-  .nav-menu ul li {
-    width: 100%;
+    gap: 15px;
+    margin: 0;
   }
 
   .nav-menu a {
     display: block;
-    width: 100%;
-    padding: 10px 20px;
+    padding: 8px 0;
     font-size: 1rem;
-    color: #333;
-    border-bottom: 1px solid #eee;
-  }
-
-  .nav-menu a:last-child {
-    border-bottom: none;
-  }
-
-  .nav-menu a.active {
-    color: #007bff;
-    background: #f0f8ff;
-    border-left: 4px solid #007bff;
   }
 }
 
-/* 📱 Extra small devices */
+/* Extra small devices */
 @media (max-width: 480px) {
   .header-container {
     padding: 8px 15px;
@@ -157,11 +135,5 @@
 
   .nav-menu a {
     font-size: 0.95rem;
-  }
-
-  .nav-menu {
-    top: 60px;
-    right: 15px;
-    width: 180px;
   }
 }

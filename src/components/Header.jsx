@@ -23,17 +23,10 @@ const Header = () => {
           </Link>
         </div>
 
-        {/* Hamburger Button */}
-        <button
-          className={`hamburger-button ${menuOpen ? "open" : ""}`}
-          onClick={toggleMenu}
-          aria-label="Toggle menu"
-        >
-          <span></span>
-          <span></span>
-          <span></span>
-          <span className="menu-text">Menu</span>
-        </button>
+        {/* Hamburger Icon */}
+        <div className="menu-icon" onClick={toggleMenu}>
+          &#x22EE; {/* Unicode vertical ellipsis (3 dots) */}
+        </div>
 
         {/* Navigation */}
         <nav className={`nav-menu ${menuOpen ? "open" : ""}`}>
