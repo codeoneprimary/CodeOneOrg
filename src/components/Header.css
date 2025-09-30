@@ -8,11 +8,12 @@
   position: sticky;
   top: 0;
   z-index: 1000;
-  font-family: 'Anek Devanagari', sans-serif; /* 👈 Font applied */
+  font-family: 'Anek Devanagari', sans-serif;
 }
 
+/* Desktop container */
 .header-container {
-  max-width: 1500px;
+  max-width: 1200px;      /* ✅ prevent too wide layouts */
   margin: 0 auto;
   padding: 15px 50px;
   display: flex;
@@ -20,18 +21,20 @@
   align-items: center;
 }
 
+/* Logo */
 .logo-link {
   font-size: 1.9rem;
   font-weight: 700;
   color: #007bff;
   text-decoration: none;
-  font-family: 'Anek Devanagari', sans-serif; /* 👈 Ensures font on logo */
+  font-family: 'Anek Devanagari', sans-serif;
 }
 
 .logo-link span {
   color: #222;
 }
 
+/* Nav Menu */
 .nav-menu ul {
   display: flex;
   list-style: none;
@@ -45,7 +48,7 @@
   color: #333;
   font-weight: 500;
   transition: color 0.3s ease;
-  font-family: 'Anek Devanagari', sans-serif; /* 👈 Font applied to nav items */
+  font-family: 'Anek Devanagari', sans-serif;
 }
 
 .nav-menu a:hover {
@@ -56,4 +59,45 @@
   color: #007bff;
   border-bottom: 2px solid #007bff;
   padding-bottom: 3px;
+}
+
+/* 📱 Responsive for tablets & mobiles */
+@media (max-width: 768px) {
+  .header-container {
+    padding: 10px 20px;
+    flex-direction: column; /* stack logo and nav */
+    align-items: flex-start;
+  }
+
+  .logo-link {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+
+  .nav-menu ul {
+    flex-direction: column; /* vertical nav */
+    gap: 15px;
+    width: 100%;
+  }
+
+  .nav-menu a {
+    display: block;
+    padding: 8px 0;
+    font-size: 1rem;
+  }
+}
+
+/* 📱 Extra small devices */
+@media (max-width: 480px) {
+  .header-container {
+    padding: 8px 15px;
+  }
+
+  .logo-link {
+    font-size: 1.3rem;
+  }
+
+  .nav-menu a {
+    font-size: 0.95rem;
+  }
 }
