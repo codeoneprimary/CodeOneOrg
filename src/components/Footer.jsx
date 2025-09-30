@@ -62,7 +62,7 @@ function Footer() {
           <div className="talk-to-support">
             <p className="support-title">Talk To Our Support</p>
             <div className="phone-number">
-              <span className="number">+918208171281</span>
+              <span className="number">8208171281</span>
               <div className="chat-icon" aria-label="Phone icon" role="img">
                 📞
               </div>

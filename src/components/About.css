@@ -18,7 +18,7 @@ body {
 }
 
 /* ========================================================== */
-/* 1. HEADER SECTION (Matching Image 1) */
+/* 1. HEADER SECTION */
 /* ========================================================== */
 .about-header-section-v2 {
     position: relative;
@@ -83,7 +83,7 @@ body {
 }
 
 /* ========================================================== */
-/* 2. IMAGE + CONTENT SECTION (Matching Images 2 & 3) */
+/* 2. IMAGE + CONTENT SECTION */
 /* ========================================================== */
 .image-content-section {
     padding: 100px 20px;
@@ -237,8 +237,11 @@ body {
 /* ========================================================== */
 /* RESPONSIVE STYLES */
 /* ========================================================== */
+
+/* Desktop/Tablet Transition (1024px) */
 @media (max-width: 1024px) {
     .content-wrapper {
+        /* Switch from row to column layout */
         flex-direction: column;
         gap: 80px;
     }
@@ -265,9 +268,11 @@ body {
     }
 }
 
+/* Tablet/Large Mobile (768px) */
 @media (max-width: 768px) {
     .header-main-title-v2 {
-        font-size: 2.5rem;
+        /* Further reduction for header title */
+        font-size: 2.2rem;
     }
 
     .image-content-section {
@@ -275,11 +280,70 @@ body {
     }
     
     .section-title {
+        /* Further reduction for body section titles */
         font-size: 2rem;
     }
 
     .feature-list {
+        /* Switch feature list from 2 columns to 1 column */
         grid-template-columns: 1fr;
         gap: 15px;
+    }
+}
+
+/* 🔥 Small Mobile Screen (480px) - NEW OPTIMIZATIONS 🔥 */
+@media (max-width: 480px) {
+    /* --- Header Adjustments --- */
+    .about-header-section-v2 {
+        height: 300px; /* Slightly shorter header */
+    }
+    .header-main-title-v2 {
+        font-size: 1.8rem; /* Make header title small enough for any phone */
+    }
+    .header-content-v2 {
+        padding: 0 15px; /* Tighter side padding */
+    }
+    
+    /* --- General Padding Reduction --- */
+    .image-content-section {
+        /* Reduce padding around the image/text content */
+        padding: 40px 15px;
+    }
+    
+    /* --- Image Column Adjustments --- */
+    .main-image-box {
+        max-width: 90%; /* Prevent image from touching screen edges */
+    }
+
+    .overlay-image-box {
+        /* Pull the overlay box closer to the main image */
+        right: 5px; 
+        width: 100px;
+        height: 70px;
+        bottom: -15px;
+        border-width: 3px;
+    }
+
+    .dotted-pattern {
+        /* Move the pattern closer to the edge and make it smaller */
+        right: 15px; 
+        top: 20px;
+        width: 80px;
+        height: 80px;
+    }
+
+    /* --- Text Column Adjustments --- */
+    .section-title {
+        font-size: 1.6rem; /* Smallest font size for titles */
+    }
+
+    .section-description {
+        font-size: 0.95rem; 
+        line-height: 1.5;
+    }
+    
+    /* --- Simple Content Section --- */
+    .about-section-content h2 {
+        font-size: 1.8em;
     }
 }

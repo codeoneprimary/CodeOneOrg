@@ -285,9 +285,35 @@ body {
     background-color: #0056b3;
 }
 
+/* Spinner styles (already responsive) */
+.file-spinner-wrapper {
+    display: flex;
+    align-items: center;
+    margin-top: 6px;
+    gap: 8px;
+    font-size: 14px;
+    color: #00bfff;
+}
+
+.file-spinner {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #00bfff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 /* ========================================================== */
 /* RESPONSIVE STYLES */
 /* ========================================================== */
+
+/* Tablet / Large Mobile (1024px) */
 @media (max-width: 1024px) {
     .job-intro-section .content-wrapper,
     .form-content-wrapper {
@@ -306,29 +332,8 @@ body {
         max-width: 100%;
     }
 }
-.file-spinner-wrapper {
-  display: flex;
-  align-items: center;
-  margin-top: 6px;
-  gap: 8px;
-  font-size: 14px;
-  color: #00bfff;
-}
 
-.file-spinner {
-  width: 18px;
-  height: 18px;
-  border: 2px solid #f3f3f3;
-  border-top: 2px solid #00bfff;
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
+/* Tablet / Portrait (768px) */
 @media (max-width: 768px) {
     .header-main-title-v2 {
         font-size: 2.5rem;
@@ -345,5 +350,80 @@ body {
 
     .application-form {
         padding: 25px;
+    }
+    
+    .list-title {
+        font-size: 1.3rem;
+    }
+    
+    .job-list li {
+        font-size: 1rem;
+    }
+    
+    .contact-details p {
+        font-size: 1rem;
+    }
+}
+
+/* 🔥 Small Mobile Phone (480px) - NEW OPTIMIZATIONS 🔥 */
+@media (max-width: 480px) {
+    /* --- Header Adjustments --- */
+    .career-header-section {
+        height: 250px; /* Shorter header on small phones */
+    }
+    .header-main-title-v2 {
+        font-size: 1.8rem; /* Smallest header title for readability */
+    }
+    .header-breadcrumb-v2 {
+        font-size: 0.8rem;
+    }
+    .header-content-v2 {
+        padding: 0 15px; /* Tighter side padding */
+    }
+    
+    /* --- Section Padding & Titles --- */
+    .job-intro-section,
+    .career-form-section {
+        padding: 30px 15px; /* Tighter padding on all sections */
+    }
+    
+    .section-title {
+        font-size: 1.6rem;
+        margin-bottom: 15px; /* Tighter margin below title */
+    }
+    
+    .section-description {
+        font-size: 0.95rem; 
+        margin-bottom: 25px;
+    }
+    
+    /* --- Job List Adjustments --- */
+    .job-list-container {
+        padding: 15px;
+    }
+    .list-title {
+        font-size: 1.2rem;
+    }
+    
+    /* --- Form Section Adjustments --- */
+    .application-form {
+        padding: 15px; /* Minimal padding inside the form box */
+    }
+    
+    .application-form input[type="text"],
+    .application-form input[type="email"],
+    .application-form input[type="tel"],
+    .application-form textarea {
+        padding: 12px; /* Smaller input padding */
+        font-size: 0.95rem;
+    }
+    
+    .submit-button {
+        padding: 12px 20px; /* Smaller button padding */
+        font-size: 1rem;
+    }
+    
+    .contact-details p {
+        font-size: 0.95rem; /* Smaller contact text */
     }
 }

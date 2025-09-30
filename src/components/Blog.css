@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 
 /* --- General Reset & Utility Styles --- */
 * {
@@ -197,9 +197,19 @@ body {
 /* ========================================================== */
 /* RESPONSIVE STYLES */
 /* ========================================================== */
+
+/* Tablet / Large Mobile (768px) */
 @media (max-width: 768px) {
     .header-main-title-v2 {
         font-size: 2.5rem;
+    }
+
+    .header-content-v2 {
+        padding: 0 30px; /* Slight horizontal padding adjustment */
+    }
+
+    .blog-content-section {
+        padding: 50px 20px; /* Reduce vertical padding */
     }
 
     .section-title {
@@ -211,6 +221,7 @@ body {
         flex-direction: column; /* Stack image and text */
         gap: 15px;
         padding: 15px;
+        /* Ensure cards don't use the full desktop padding */
     }
 
     .card-image-wrapper {
@@ -220,5 +231,56 @@ body {
 
     .card-title {
         font-size: 1.3rem;
+    }
+}
+
+/* 🔥 Small Mobile Phone (480px) - Critical for small screens 🔥 */
+@media (max-width: 480px) {
+    .blog-header-section {
+        height: 280px; /* Shorter header on small phones */
+    }
+
+    .header-main-title-v2 {
+        font-size: 1.8rem; /* Smallest header title for readability */
+    }
+
+    .header-breadcrumb-v2 {
+        font-size: 0.8rem;
+    }
+
+    .header-content-v2 {
+        padding: 0 15px; /* Tightest horizontal padding */
+    }
+
+    .blog-content-section {
+        padding: 30px 15px; /* Tighter padding around the content area */
+    }
+
+    .section-title {
+        font-size: 1.6rem;
+        margin-bottom: 20px;
+    }
+
+    .blog-article-card {
+        padding: 10px; /* Minimal padding inside the card */
+    }
+
+    .card-image-wrapper {
+        height: 150px; /* Shorter image wrapper */
+    }
+
+    .card-title {
+        font-size: 1.1rem; /* Smallest card title font size */
+        margin-bottom: 5px;
+    }
+
+    .card-description {
+        font-size: 0.9rem; /* Smaller body text for mobile */
+        margin-bottom: 10px;
+    }
+
+    .card-read-more {
+        font-size: 0.9rem;
+        padding: 3px 6px;
     }
 }

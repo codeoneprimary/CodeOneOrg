@@ -204,7 +204,11 @@ body {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-/* Responsive Adjustments */
+/* ========================================================== */
+/* RESPONSIVE STYLES */
+/* ========================================================== */
+
+/* Medium Screens (1200px) */
 @media (max-width: 1200px) {
     .service-card {
         flex: 0 0 calc(50% - 15px);
@@ -212,12 +216,97 @@ body {
     }
 }
 
+/* Tablet / Large Phone (768px) */
 @media (max-width: 768px) {
+    /* --- Header Adjustments --- */
+    .services-header-section {
+        height: 300px;
+    }
+    .header-main-title-v2 {
+        font-size: 2.5rem;
+    }
+    
+    /* --- Service Section Adjustments --- */
+    .services-container {
+        padding: 50px 20px; /* Reduce vertical padding */
+    }
+    .services-header {
+        margin-bottom: 30px;
+    }
     .section-title {
         font-size: 1.8rem;
     }
+    
+    /* --- Card Stacking --- */
     .service-card {
-        flex: 0 0 100%;
-        max-width: 90%;
+        flex: 0 0 100%; /* Full width cards */
+        max-width: 90%; /* Keep them from touching the edges */
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/* 🔥 Small Mobile Phone (480px) - NEW OPTIMIZATIONS 🔥 */
+@media (max-width: 480px) {
+    /* --- Header Adjustments --- */
+    .services-header-section {
+        height: 250px;
+    }
+    .header-main-title-v2 {
+        font-size: 1.8rem; /* Smallest header title */
+    }
+    .header-content-v2 {
+        padding: 0 15px;
+    }
+    .header-breadcrumb-v2 {
+        font-size: 0.8rem;
+    }
+
+    /* --- Service Section Tightening --- */
+    .services-container {
+        padding: 30px 15px; /* Tightest vertical padding */
+    }
+    
+    .section-pretitle {
+        font-size: 1rem;
+    }
+    .section-title {
+        font-size: 1.5rem; /* Smallest section title */
+    }
+    .section-subtitle {
+        font-size: 0.9rem;
+    }
+    
+    /* --- Card Sizing --- */
+    .service-card {
+        padding: 25px 15px; /* Tighter padding inside the card */
+        margin-bottom: 20px; /* Tighter margin between cards */
+    }
+
+    /* --- Icon Sizing --- */
+    .icon-box {
+        width: 50px; /* Smaller icon circle */
+        height: 50px;
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+    }
+
+    /* --- Text Sizing in Cards --- */
+    .card-title {
+        font-size: 1.1rem; /* Smaller card title */
+        margin-bottom: 10px;
+    }
+    .card-description {
+        font-size: 0.85rem; /* Smallest body text */
+    }
+    
+    /* --- Scroll Button --- */
+    .scroll-up-button {
+        width: 35px;
+        height: 35px;
+        line-height: 35px;
+        font-size: 1.2rem;
+        bottom: 15px;
+        right: 15px;
     }
 }
