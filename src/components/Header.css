@@ -13,7 +13,7 @@
 
 /* Desktop container */
 .header-container {
-  max-width: 1200px;      /* ✅ prevent too wide layouts */
+  max-width: 1200px;
   margin: 0 auto;
   padding: 15px 50px;
   display: flex;
@@ -34,7 +34,31 @@
   color: #222;
 }
 
+/* Menu icon (hamburger / vertical 3 dots) */
+.menu-icon {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #333;
+
+  /* Added border */
+  border: 2px solid #333;    /* fixed border size */
+  border-radius: 4px;
+  padding: 4px 8px;
+  box-sizing: content-box;
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.menu-icon:hover {
+  border-color: #007bff;
+  color: #007bff;
+}
+
 /* Nav Menu */
+.nav-menu {
+  display: flex;
+}
+
 .nav-menu ul {
   display: flex;
   list-style: none;
@@ -65,25 +89,59 @@
 @media (max-width: 768px) {
   .header-container {
     padding: 10px 20px;
-    flex-direction: column; /* stack logo and nav */
-    align-items: flex-start;
+    flex-direction: row;
+    align-items: center;
   }
 
-  .logo-link {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
+  .menu-icon {
+    display: block;
+  }
+
+  .nav-menu {
+    position: absolute;
+    top: 65px;
+    right: 20px;
+    background: #fff;
+    width: 200px;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: none;
+    flex-direction: column;
+    padding: 10px 0;
+    border-radius: 8px;
+    z-index: 1001;
+  }
+
+  .nav-menu.open {
+    display: flex;
   }
 
   .nav-menu ul {
-    flex-direction: column; /* vertical nav */
-    gap: 15px;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .nav-menu ul li {
     width: 100%;
   }
 
   .nav-menu a {
     display: block;
-    padding: 8px 0;
+    width: 100%;
+    padding: 10px 20px;
     font-size: 1rem;
+    color: #333;
+    border-bottom: 1px solid #eee;
+  }
+
+  .nav-menu a:last-child {
+    border-bottom: none;
+  }
+
+  .nav-menu a.active {
+    color: #007bff;
+    background: #f0f8ff;
+    border-left: 4px solid #007bff;
   }
 }
 
@@ -99,5 +157,11 @@
 
   .nav-menu a {
     font-size: 0.95rem;
+  }
+
+  .nav-menu {
+    top: 60px;
+    right: 15px;
+    width: 180px;
   }
 }
