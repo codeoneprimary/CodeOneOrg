@@ -61,13 +61,13 @@ const Hero = () => {
           <div className="about-content">
             <p className="about-us-tag">ABOUT US</p>
             <h2 className="about-headline">
-              At CodeOne Technologies, we combine expertise
-              <br /> in staffing, IT services, and digital solutions to
-              <br /> help businesses scale faster and smarter. Whether you need
-              a skilled workforce,
-              <br />
-              custom software, or a strong online presence, we’ve got you
-              covered.
+              <p>
+                {" "}
+                At CodeOne Technologies, we combine expertise in staffing, IT
+                services, and digital solutions to help businesses scale faster
+                and smarter. Whether you need a skilled workforce, custom
+                software, or a strong online presence, we’ve got you covered.
+              </p>
             </h2>
 
             <p className="about-subtext">
