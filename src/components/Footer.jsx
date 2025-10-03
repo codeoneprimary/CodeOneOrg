@@ -24,10 +24,11 @@ function Footer() {
     setMessage("");
 
     try {
-      // Using full backend URL
-      await axios.post("http://localhost:8080/api/newsletter/subscribe", {
-        email,
-      });
+      // Using live backend URL on Render
+      await axios.post(
+        "https://codeonebackend-13.onrender.com/api/newsletter/subscribe",
+        { email }
+      );
       setMessage("✅ Successfully subscribed!");
       setEmail("");
     } catch (error) {
