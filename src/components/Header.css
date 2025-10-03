@@ -1,4 +1,4 @@
- /* Import Anek Devanagari font */
+/* Import Anek Devanagari font */
 @import url('https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@400;500;600;700&display=swap');
 
 .header {
@@ -13,26 +13,28 @@
 
 /* Desktop container */
 .header-container {
-  max-width: 1200px;      /* ✅ prevent too wide layouts */
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 15px 50px;
+  padding: 12px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: relative; /* for absolute menu positioning */
+  position: relative;
 }
 
-/* Logo */
+/* Logo link wrapper */
 .logo-link {
-  font-size: 1.9rem;
-  font-weight: 700;
-  color: #007bff;
+  display: flex;
+  align-items: center;
   text-decoration: none;
-  font-family: 'Anek Devanagari', sans-serif;
 }
 
-.logo-link span {
-  color: #222;
+/* Logo image (balanced size across devices) */
+.logo-image {
+  height: 46px; /* Desktop optimal size */
+  width: auto;
+  display: block;
+  object-fit: contain;
 }
 
 /* Nav Menu */
@@ -66,46 +68,41 @@
 .menu-icon {
   font-size: 1.8rem;
   cursor: pointer;
-  display: none; /* hidden by default */
+  display: none;
   user-select: none;
   color: #007bff;
 }
 
-/* MOBILE & TABLET styles */
+/* ===================
+   MOBILE & TABLET 
+   =================== */
 @media (max-width: 768px) {
   .header-container {
     padding: 10px 20px;
-    flex-direction: row; /* keep logo and icon on same line */
-    justify-content: space-between;
-    align-items: center;
   }
 
-  .logo-link {
-    font-size: 1.5rem;
-    margin-bottom: 0;
+  .logo-image {
+    height: 48px;
   }
 
-  /* Show menu icon on mobile */
   .menu-icon {
     display: block;
   }
 
-  /* Nav Menu - hidden by default */
   .nav-menu {
     display: none;
     position: absolute;
-    top: 60px; /* adjust as needed */
+    top: 70px;
     right: 20px;
     background: #fff;
     border: 1px solid #eee;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 6px;
     width: 200px;
     padding: 15px 20px;
     z-index: 1500;
   }
 
-  /* Show nav menu when open */
   .nav-menu.open {
     display: block;
   }
@@ -113,7 +110,6 @@
   .nav-menu ul {
     flex-direction: column;
     gap: 15px;
-    margin: 0;
   }
 
   .nav-menu a {
@@ -123,14 +119,16 @@
   }
 }
 
-/* Extra small devices */
+/* ===================
+   EXTRA SMALL DEVICES 
+   =================== */
 @media (max-width: 480px) {
   .header-container {
     padding: 8px 15px;
   }
 
-  .logo-link {
-    font-size: 1.3rem;
+  .logo-image {
+    height: 42px;
   }
 
   .nav-menu a {

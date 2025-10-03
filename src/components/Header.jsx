@@ -1,34 +1,30 @@
 import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import logo from "../assets/images/logo.jpg"; // ✅ Make sure the path is correct
 import "./Header.css";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
-
-  const closeMenu = () => {
-    setMenuOpen(false);
-  };
+  const toggleMenu = () => setMenuOpen(!menuOpen);
+  const closeMenu = () => setMenuOpen(false);
 
   return (
     <header className="header">
       <div className="header-container">
-        {/* Logo */}
+        {/* Logo image only */}
         <div className="logo">
           <Link to="/" className="logo-link">
-            CodeOne <span>Technologies</span>
+            <img src={logo} alt="CodeOne Logo" className="logo-image" />
           </Link>
         </div>
 
-        {/* Hamburger Icon */}
+        {/* Hamburger Menu Icon */}
         <div className="menu-icon" onClick={toggleMenu}>
-          &#x22EE; {/* Unicode vertical ellipsis (3 dots) */}
+          &#x22EE;
         </div>
 
-        {/* Navigation */}
+        {/* Navigation Links */}
         <nav className={`nav-menu ${menuOpen ? "open" : ""}`}>
           <ul>
             <li>

@@ -8,11 +8,14 @@ import {
   FaPaperPlane,
 } from "react-icons/fa";
 
+// Directly use Render URL
+const API_BASE_URL = "https://codeone-contactservice.onrender.com";
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    phone: "", // optional
+    phone: "",
     subject: "",
     message: "",
   });
@@ -49,19 +52,12 @@ const Contact = () => {
     try {
       const sentTime = new Date().toISOString();
 
-      const response = await fetch("http://localhost:8081/api/contact", {
+      const response = await fetch(`${API_BASE_URL}/api/contact`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          phone: formData.phone,
-          subject: formData.subject,
-          message: formData.message,
-          sentTime: sentTime,
-        }),
+        body: JSON.stringify({ ...formData, sentTime }),
       });
 
       if (response.ok) {
@@ -74,9 +70,7 @@ const Contact = () => {
           message: "",
         });
         setStatus(null);
-        setTimeout(() => {
-          setShowSuccess(false);
-        }, 3000);
+        setTimeout(() => setShowSuccess(false), 3000);
       } else {
         const errorData = await response.json();
         setStatus({
@@ -96,7 +90,6 @@ const Contact = () => {
 
   return (
     <div className="contact-page-container">
-      {/* ======= Header Banner ======= */}
       <section className="contact-header-section">
         <div className="header-overlay"></div>
         <div className="header-content-v2">
@@ -105,10 +98,8 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* ======= Contact Info & Form ======= */}
       <section className="contact-section-container">
         <div className="contact-content-wrapper">
-          {/* Left Side - Details */}
           <div className="contact-text-and-details">
             <p className="contact-us-tag">CONTACT US</p>
             <h1 className="main-title">
@@ -162,14 +153,13 @@ const Contact = () => {
                   <p className="detail-value multi-line">
                     Mon- Fri: 9.00 AM - 7.00 PM
                     <br />
-                    St-sun:Closed
+                    Sat-Sun: Closed
                   </p>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Right Side - Contact Form */}
           <div className="contact-form-side">
             <h2 className="form-title">Get In Touch</h2>
             <form className="contact-form" onSubmit={handleSubmit}>
@@ -220,8 +210,7 @@ const Contact = () => {
                 onChange={handleChange}
                 required
                 disabled={isSubmitting}
-              ></textarea>
-
+              />
               <button
                 type="submit"
                 className="submit-button"
@@ -251,14 +240,9 @@ const Contact = () => {
                 Message sent successfully!
               </p>
             )}
-
             {status && !status.success && (
               <p
-                style={{
-                  marginTop: "10px",
-                  color: "red",
-                  fontWeight: "bold",
-                }}
+                style={{ marginTop: "10px", color: "red", fontWeight: "bold" }}
               >
                 {status.message}
               </p>
