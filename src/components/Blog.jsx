@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { FaHome, FaChevronRight } from "react-icons/fa"; // Added icons for the header
-import "./Blog.css"; // We'll put all the styles here
+import axios from "axios";
+import { FaHome, FaChevronRight } from "react-icons/fa";
+import "./Blog.css";
 
-// 🌟 Component: Header Section (Matching the pattern of About/Career pages)
+// Header component
 const BlogHeader = () => (
   <div
     className="blog-header-section"
-    // IMPORTANT: Replace the image path with a suitable banner image
     style={{ backgroundImage: "url('/path-to-your-blog-banner-image.jpg')" }}
   >
     <div className="header-overlay"></div>
@@ -20,7 +20,7 @@ const BlogHeader = () => (
   </div>
 );
 
-// 💻 Component: Article Card
+// Article card component
 const ArticleCard = ({ article, index }) => (
   <article className="blog-article-card" key={index}>
     {article.urlToImage && (
@@ -52,19 +52,19 @@ const Blog = () => {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // NOTE: You must update the API key for this to work in production
-  const API_KEY = "3adbf3b44f424eeca8a10ed79f7dceb8";
+  // Use Vite env variable here
+  const API_KEY = import.meta.env.VITE_NEWS_API_KEY;
 
   useEffect(() => {
-    fetch(
-      `https://newsapi.org/v2/top-headlines?category=technology&apiKey=${API_KEY}`
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.status === "ok") {
-          setArticles(data.articles || []);
+    axios
+      .get(
+        `https://newsapi.org/v2/top-headlines?category=technology&apiKey=${API_KEY}`
+      )
+      .then((res) => {
+        if (res.data.status === "ok") {
+          setArticles(res.data.articles || []);
         } else {
-          console.error("Error fetching news:", data);
+          console.error("Error fetching news:", res.data);
         }
         setLoading(false);
       })
@@ -72,12 +72,11 @@ const Blog = () => {
         console.error("Fetch error:", error);
         setLoading(false);
       });
-  }, []);
+  }, [API_KEY]);
 
   return (
     <div className="blog-page-container">
       <BlogHeader />
-
       <section className="blog-content-section">
         <div className="content-wrapper">
           <h2 className="section-title text-center"></h2>
