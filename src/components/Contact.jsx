@@ -137,7 +137,6 @@ const Contact = () => {
                   <p className="detail-label">Contact Location</p>
                   <p className="detail-value multi-line">
                     Joyville Hadapsar Annexe T3 Building, 22nd Floor Shewalwadi
-                    ,
                     <br />
                     Hadapsar Annexe Pune – 412307 Maharashtra, India
                   </p>
