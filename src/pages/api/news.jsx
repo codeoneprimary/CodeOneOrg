@@ -1,21 +1,16 @@
-// pages/api/news.js
-import fetch from "node-fetch";
+import axios from "axios";
 
 export default async function handler(req, res) {
-  const apiKey = process.env.NEWS_API_KEY;
-
-  const url = `https://newsapi.org/v2/top-headlines?category=technology&apiKey=${apiKey}`;
-
   try {
-    const response = await fetch(url);
-    const data = await response.json();
+    const { category = "technology" } = req.query;
 
-    if (data.status !== "ok") {
-      return res.status(500).json({ error: "Failed to fetch news" });
-    }
+    const response = await axios.get(
+      `https://newsapi.org/v2/top-headlines?category=${category}&apiKey=${process.env.NEWS_API_KEY}`
+    );
 
-    return res.status(200).json(data);
+    res.status(200).json(response.data);
   } catch (error) {
-    return res.status(500).json({ error: "Internal Server Error" });
+    console.error("NewsAPI error:", error.message);
+    res.status(500).json({ error: "Failed to fetch news" });
   }
 }
