@@ -196,13 +196,6 @@ function Footer() {
           Copyright © 2025 CodeOne Technologies Solution Pvt Ltd. All Rights
           Reserved.
         </p>
-        <button
-          className="back-to-top"
-          onClick={scrollToTop}
-          aria-label="Back to top"
-        >
-          ↑
-        </button>
       </div>
     </footer>
   );
